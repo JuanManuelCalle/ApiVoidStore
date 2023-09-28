@@ -50,7 +50,15 @@ const InicioSesion = async (req, res) => {
     })
 }
 
+const recover = (req, res) => {
+    return res.json({
+        success: true,
+        data: req.auth
+    })
+}
+
 module.exports = {
     Registro,
-    InicioSesion
+    InicioSesion,
+    recover
 }
