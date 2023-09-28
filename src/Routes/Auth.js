@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Registro, InicioSesion, recover } = require('../Controllers/Auth');
-const {auth: authMiddleware} = require('../middleware/auth');
+const {aut: authMid} = require('../middleware/Auth')
 
 const auth = (app) => {
     const router = Router();
@@ -9,7 +9,7 @@ const auth = (app) => {
 
     router.post('/registro', Registro);
     router.post('/inicioSesion', InicioSesion)
-    router.get('/recover', authMiddleware, recover)
+    router.get('/recover', authMid, recover)
 }
 
 module.exports = auth
