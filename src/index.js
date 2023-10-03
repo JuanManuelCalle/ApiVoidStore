@@ -4,7 +4,8 @@ const connect = require('./config/db');
 const producto = require('./Routes/productos');
 const auth = require('./Routes/Auth');
 const { handleAuthError } = require('./middleware/Auth');
-const cors = require('cors')
+const cors = require('cors');
+const authVendedor = require('./Routes/AuthVendedor');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cors({
 }))
 
 auth(app);
+authVendedor(app)
 producto(app);
 
 

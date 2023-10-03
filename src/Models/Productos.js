@@ -4,7 +4,8 @@ const productoSchema = new mongoose.Schema({
     name: String,
     precio: Number,
     descripcion: String,
-    stok: Number
+    stok: Number,
+    id_vendedor: String
 })
 
 const Producto = mongoose.model('Producto', productoSchema);
