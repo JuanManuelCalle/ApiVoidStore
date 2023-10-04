@@ -1,11 +1,26 @@
 const mongoose = require('mongoose');
 
 const productoSchema = new mongoose.Schema({
-    name: String,
-    precio: Number,
-    descripcion: String,
-    stok: Number,
-    id_vendedor: String
+    name: {
+        type: String,
+        required: [true, 'El nombre es required']
+    },
+    precio: {
+        type: String,
+        required: [true, 'El precio es required']
+    },
+    descripcion: {
+        type: String,
+        required: [true, 'El descripcion es required']
+    },
+    stok: {
+        type: Number,
+        required: [true, 'La stok es required']
+    },
+    id_vendedor: {
+        type: String,
+        required: [true, 'La stok es required']
+    },
 })
 
 const Producto = mongoose.model('Producto', productoSchema);
