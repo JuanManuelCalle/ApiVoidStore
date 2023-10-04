@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { createProducto, getProductos, updateProducto, deleteProducto } = require('../Controllers/producto');
+const { createProducto, getProductos, updateProducto, deleteProducto, getProductosStore } = require('../Controllers/producto');
 const {auth} = require('../middleware/Auth');
 
 function producto(app) {
@@ -18,6 +18,8 @@ function producto(app) {
     });
 
     router.get('/get/:id', auth, getProductos);
+    
+    router.get('/getAll', auth, getProductosStore)
 
     router.post('/create', auth, createProducto);
 
