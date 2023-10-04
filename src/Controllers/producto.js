@@ -1,8 +1,9 @@
 const Producto = require('../Models/Productos');
 
 const getProductos = async (req, res) => {
+    const vendedorId = req.params.id;
     try{
-        const productos = await Producto.find();
+        const productos = await Producto.findById(vendedorId);
         return res.json({
             success: true,
             data: productos
