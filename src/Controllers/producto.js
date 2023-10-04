@@ -2,6 +2,7 @@ const Producto = require('../Models/Productos');
 
 const getProductos = async (req, res) => {
     const vendedorId = req.params.id;
+    console.log(vendedorId);
     try{
         const productos = await Producto.find({id_vendedor: vendedorId});
         return res.json({

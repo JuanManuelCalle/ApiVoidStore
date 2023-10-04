@@ -17,7 +17,7 @@ function producto(app) {
         next(err);
     });
 
-    router.get('/get', auth, getProductos);
+    router.get('/get/:id', auth, getProductos);
 
     router.post('/create', auth, createProducto);
 
