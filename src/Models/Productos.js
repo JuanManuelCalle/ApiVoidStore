@@ -18,7 +18,7 @@ const productoSchema = new mongoose.Schema({
         required: [true, 'La stok es required']
     },
     id_vendedor: {
-        type: String,
+        type: Number,
         required: [true, 'La stok es required']
     },
 })
