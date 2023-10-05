@@ -38,6 +38,24 @@ const getProductosStore = async (req, res) => {
     }
 }
 
+const getOneProducto = async (req, res) => {
+    const IdProducto = req.params.id;
+    try{
+        const productos = await Producto.find({_id: IdProducto});
+        return res.json({
+            success: true,
+            data: productos
+        });
+
+    }catch(error){
+        return res.jason({
+            success: true,
+            data: error.message,
+            message: "Productos no traidos"
+        })
+    }
+}
+
 const createProducto = async (req, res) => {
     try{
         const producto = req.body
@@ -95,5 +113,6 @@ module.exports = {
     getProductos,
     updateProducto,
     deleteProducto,
-    getProductosStore
+    getProductosStore,
+    getOneProducto
 }

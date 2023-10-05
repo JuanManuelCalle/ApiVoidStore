@@ -19,7 +19,11 @@ const productoSchema = new mongoose.Schema({
     },
     id_vendedor: {
         type: String,
-        required: [true, 'La stok es required']
+        required: [true, 'El id_vendedor es required']
+    },
+    image: {
+        type: String,
+        required: [true, 'La Image es required']
     },
 })
 
