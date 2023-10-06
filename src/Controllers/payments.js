@@ -36,11 +36,9 @@ const createOrder = async (req, res) => {
             ],
         },{
             headers: {
-                'Authorization': 'Bearer ' + token
+                'Authorization': 'Bearer ' +token
             }
         })
-        
-        console.log(responsePaymentOrder.data)
 
         return res.json({
             success: true,
