@@ -49,7 +49,7 @@ const createOrder = async (req, res) => {
         console.log(error);
         return res.json({
             success: false,
-            message: error
+            errorMessage: error
         })
     }
 }
