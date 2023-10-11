@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['VENDEDOR', 'REGULAR'],
         default: 'REGULAR'
+    },
+    name_store: {
+        type: String,
+        default: null
     }
 })
 
