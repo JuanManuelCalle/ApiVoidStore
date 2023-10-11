@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { createProducto, getProductos, updateProducto, deleteProducto, getProductosStore, getOneProducto } = require('../Controllers/producto');
-const {auth} = require('../middleware/Auth');
+const {auth, verifyRole} = require('../middleware/Auth');
 
 function producto(app) {
     const router = Router();
@@ -17,17 +17,17 @@ function producto(app) {
         next(err);
     });
 
-    router.get('/get/:id', auth, getProductos);
+    router.get('/get/:id', auth, verifyRole(['VENDEDOR']) ,getProductos);
     
     router.get('/getAll', auth, getProductosStore)
 
-    router.get('/getOne/:id', auth, getOneProducto)
+    router.get('/getOne/:id', auth, verifyRole(['VENDEDOR']) ,getOneProducto)
 
-    router.post('/create', auth, createProducto);
+    router.post('/create', auth, verifyRole(['VENDEDOR']) ,createProducto);
 
-    router.put('/update/:id', auth, updateProducto);
+    router.put('/update/:id', auth, verifyRole(['VENDEDOR']) ,updateProducto);
 
-    router.delete('/delete/:id', auth, deleteProducto);
+    router.delete('/delete/:id', auth, verifyRole(['VENDEDOR']) ,deleteProducto);
 }
 
 module.exports = producto;

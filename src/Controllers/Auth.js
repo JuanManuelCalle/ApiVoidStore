@@ -53,6 +53,12 @@ const InicioSesion = async (req, res) => {
     }
 
     const userLogin = await User.findOne({email})
+    if(userLogin === null){
+        return res.json({
+            success: false,
+            message: "El usuario no fue encontrado intenta nuevamente",
+        })
+    }
 
     if(email === userLogin.email && bcrypt.compareSync(password, userLogin.password)){
 

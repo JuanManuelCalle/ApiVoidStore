@@ -19,6 +19,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'La password es required']
     },
+    passwordRecoveryCode: String,
+    role: {
+        type: String,
+        enum: ['VENDEDOR', 'REGULAR'],
+        default: 'REGULAR'
+    }
 })
 
 userSchema.methods.hashPassword = function(password) {
