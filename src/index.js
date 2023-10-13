@@ -6,6 +6,7 @@ const auth = require('./Routes/Auth');
 const { handleAuthError } = require('./middleware/Auth');
 const cors = require('cors');
 const payments = require('./Routes/payments');
+const orden = require('./Routes/Ordens');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(cors({
 auth(app);
 producto(app);
 payments(app)
+orden(app)
 
 
 app.use(handleAuthError)
