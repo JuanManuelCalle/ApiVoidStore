@@ -20,19 +20,20 @@ const createOrden = async (req, res) => {
     }
 }
 
-const getAllOrdens = async (req, res) => {
+const getOneProducto = async (req, res) => {
+    const IdProducto = req.params.id;
     try{
-        const ordens = await Ordens.find();
+        const productos = await Ordens.find({_id: IdProducto});
         return res.json({
             success: true,
-            data: ordens
+            data: productos
         });
 
     }catch(error){
         return res.jason({
             success: true,
             data: error.message,
-            message: "Ordenes no traidas no traidos"
+            message: "Ordenes no traidos"
         })
     }
 }
@@ -54,4 +55,4 @@ const deleteOrden = async (req, res) => {
     }
 }
 
-module.exports = {createOrden,getAllOrdens,deleteOrden}
+module.exports = {createOrden,getOneProducto,deleteOrden}

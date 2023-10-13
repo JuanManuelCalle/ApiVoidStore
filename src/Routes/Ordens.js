@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {auth, verifyRole} = require('../middleware/Auth');
-const {createOrden, getAllOrdens, deleteOrden} = require('../Controllers/Ordens');
+const {createOrden, getOneProducto, deleteOrden} = require('../Controllers/Ordens');
 
 function orden(app) {
     const router = Router();
@@ -20,7 +20,7 @@ function orden(app) {
 
     router.post('/create', auth, createOrden);
 
-    router.get('/getAll', auth, getAllOrdens)
+    router.get('/get/:id', auth, getOneProducto)
 
     router.delete('/deleteOrden/:id', auth, deleteOrden)
 }
