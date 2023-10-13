@@ -20,10 +20,10 @@ const createOrden = async (req, res) => {
     }
 }
 
-const getOneProducto = async (req, res) => {
+const getUserOrden = async (req, res) => {
     const IdProducto = req.params.id;
     try{
-        const productos = await Ordens.find({_id: IdProducto});
+        const productos = await Ordens.find({idUsuario: IdProducto});
         return res.json({
             success: true,
             data: productos
@@ -55,4 +55,4 @@ const deleteOrden = async (req, res) => {
     }
 }
 
-module.exports = {createOrden,getOneProducto,deleteOrden}
+module.exports = {createOrden,getUserOrden,deleteOrden}
