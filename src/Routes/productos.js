@@ -21,7 +21,7 @@ function producto(app) {
     
     router.get('/getAll', auth, getProductosStore)
 
-    router.get('/getOne/:id', auth, verifyRole(['VENDEDOR']) ,getOneProducto)
+    router.get('/getOne/:id', auth,getOneProducto)
 
     router.post('/create', auth, verifyRole(['VENDEDOR']) ,createProducto);
 
