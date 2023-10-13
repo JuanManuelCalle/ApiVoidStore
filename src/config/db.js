@@ -3,7 +3,7 @@ const moongoose = require('mongoose');
 const { dbUrl } = require('.');
 
 const connect = async() => {
-    const connection = await mongoose.connect(dbUrl, {dbName: 'VoidSotre'});
+    const connection = await mongoose.connect(dbUrl, {dbName: 'VoidStore'});
     console.log("Se ha conectado correctamente: ", connection.connection.host);
 }
 
