@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { createProducto, getProductos, updateProducto, deleteProducto, getProductosStore, getOneProducto } = require('../Controllers/producto');
+const { createProducto, getProductos, updateProducto, deleteProducto, getProductosStore, getOneProducto, updateStok } = require('../Controllers/producto');
 const {auth, verifyRole} = require('../middleware/Auth');
 
 function producto(app) {
@@ -28,6 +28,8 @@ function producto(app) {
     router.put('/update/:id', auth, verifyRole(['VENDEDOR']) ,updateProducto);
 
     router.delete('/delete/:id', auth, verifyRole(['VENDEDOR']) ,deleteProducto);
+
+    router.post('/updatestock', auth, updateStok)
 }
 
 module.exports = producto;

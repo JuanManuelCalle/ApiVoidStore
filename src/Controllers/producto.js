@@ -108,11 +108,46 @@ const deleteProducto = async (req, res) => {
     }
 }
 
+const updateStok = async (req, res) => {
+   const productos = req.body.productos
+   console.log(productos);
+   if (!Array.isArray(productos)) {
+    return res.status(400).json({
+      success: false,
+      message: "La solicitud debe contener una matriz de productos en el campo 'productos'."
+    });
+  }
+
+    try {
+        for (const item of productos){
+            const producto = await Producto.findById(item.idProducto);
+            if(producto) {
+                producto.stok -= item.qty;
+                await producto.save();
+            }
+        }
+        
+        return res.json({
+            success: true,
+            message: "El stock se actualizo correctamente"
+        })
+    }catch (error){
+        return res.json({
+            success: false,
+            message: "El producto no se pudo actualizar el stock" + error,
+            error: error
+        })
+    }
+}
+
+
+
 module.exports = {
     createProducto,
     getProductos,
     updateProducto,
     deleteProducto,
     getProductosStore,
-    getOneProducto
+    getOneProducto,
+    updateStok
 }
