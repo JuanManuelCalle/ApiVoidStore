@@ -15,7 +15,7 @@ app.use(express.json())
 connect();
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://voidstore.voidagencia.co/']
+    origin: ['http://localhost:3000', 'https://voidstore.voidagencia.co']
 }))
 
 auth(app);
