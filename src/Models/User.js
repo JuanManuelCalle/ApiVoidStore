@@ -19,7 +19,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'La password es required']
     },
-    passwordRecoveryCode: String,
+    passwordRecoveryCode: {
+        type: String, 
+        default: null,
+    },
     role: {
         type: String,
         enum: ['VENDEDOR', 'REGULAR'],

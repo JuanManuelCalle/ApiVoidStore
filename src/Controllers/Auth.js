@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
-const { jwtkey } = require('../config');
+const { jwtkey, email, passowrd } = require('../config');
 const User = require('../Models/User');
 const bcrypt = require('bcrypt');
+const {randomUUID} = require('crypto');
+const { sendMail } = require('../libs/email');
 
 const Registro = async (req, res) => {
     try {
@@ -88,8 +90,61 @@ const recover = (req, res) => {
     })
 }
 
+const passwordRecovery = async (req, res) => {
+
+    const {email} = req.body
+
+    const passowrdRecoveryCode = randomUUID();
+    console.log(passowrdRecoveryCode);
+
+    const user = await User.findOneAndUpdate({email}, {passwordRecoveryCode: passowrdRecoveryCode})
+
+    const mensaje = 'Hemos recibido una solicitud para restablecer tu contraseña. Si no hiciste esta solicitud, ignora este correo. ' +
+    'Para restablecer tu contraseña, guarda el siguiente codigo:\n' + passowrdRecoveryCode
+
+    sendMail(email, mensaje)
+    .then((response) => {
+        if(response){
+            return res.json({
+                success: true,
+                message: "EL correo se envio correctamente"
+            })
+        }
+    })
+}
+
+const changePassowrd = async (req, res) => {
+    const {code, newPassoword} = req.body
+
+    try {
+        const user = await User.findOne({passwordRecoveryCode: code})
+        if(user){
+            user.passwordRecoveryCode = null,
+            user.hashPassword(newPassoword);
+            const newUser = await user.save();
+            console.log(newUser);
+            return res.json({
+                success: true,
+                message: "Passoword cambiada exitosamente"
+            })
+        }else{
+            return res.json({
+                success: false,
+                message: "Codigo invalido"
+            })
+        }
+    }catch(error){
+        return res.json({
+            success: false,
+            message: "Error en: ", error
+        })
+    }
+}
+
 module.exports = {
     Registro,
     InicioSesion,
-    recover
+    recover,
+    passwordRecovery,
+    changePassowrd
 }
