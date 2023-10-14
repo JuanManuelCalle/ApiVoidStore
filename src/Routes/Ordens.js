@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {auth, verifyRole} = require('../middleware/Auth');
+const {auth} = require('../middleware/Auth');
 const {createOrden, getUserOrden, deleteOrden} = require('../Controllers/Ordens');
 
 function orden(app) {
@@ -15,8 +15,6 @@ function orden(app) {
         }
         next(err);
     });
-
-    /* router.get('/get/:id', auth, verifyRole(['VENDEDOR']) ,getProductos); */
 
     router.post('/create', auth, createOrden);
 

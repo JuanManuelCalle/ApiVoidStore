@@ -110,7 +110,6 @@ const deleteProducto = async (req, res) => {
 
 const updateStok = async (req, res) => {
    const productos = req.body.productos
-   console.log(productos);
    if (!Array.isArray(productos)) {
     return res.status(400).json({
       success: false,
