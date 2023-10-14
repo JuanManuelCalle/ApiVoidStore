@@ -141,10 +141,28 @@ const changePassowrd = async (req, res) => {
     }
 }
 
+const updateUser = async (req, res) => {
+    try {
+        const actualizarUsuario = await User.findByIdAndUpdate(req.body.id, req.body, {new: true});
+        return res.json({
+            success: true,
+            data: actualizarUsuario,
+            message: "Usuario actualizado exitosamente"
+        })
+    }catch(error){
+        return res.json({
+            success: false,
+            message: `No se pudo actualizar el usuario ${error}`
+        })
+    }
+}
+
+
 module.exports = {
     Registro,
     InicioSesion,
     recover,
     passwordRecovery,
-    changePassowrd
+    changePassowrd,
+    updateUser
 }
